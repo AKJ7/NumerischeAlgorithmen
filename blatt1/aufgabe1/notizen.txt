@@ -1,0 +1,32 @@
+1. Was haben Sie beobachtet?
+	Der Code kompiliert nicht, mit Fehlermeldung "multiple main() im Code"
+2. Was ist diese Mal passiert?
+    Genau was letztes Mal passiert ist
+3. Testen Sie ./au
+
+
+U:  Kompilieren Sie das Programm quadratic-eqn_aufgabe1.cpp zusammen mit myfac_aufgabe1.cpp
+    mit g++ -Wall quadratic-eqn_aufgabe1.cpp myfac_aufgabe1.cpp -o aufgabe. Was haben Sie beobachtet?
+
+A:  Der Code kompiliert nicht, mit Fehlermeldung "multiple main() im Program".
+
+
+U:  Entfernen Sie das Kommentarzeichen (//) in Zeile 11 in quadratic-eqn_aufgabe1.cpp und in Zeile 10
+    in myfac_aufgabe1.cpp. Kompilieren Sie wieder das Programm quadratic-eqn_aufgabe1.cpp zusammen
+    mit myfac_aufgabe1.cpp mit g++ -Wall quadratic-eqn_aufgabe1.cpp myfac_aufgabe1.cpp -o aufgabe
+    Was ist dieses Mal passiert?
+
+A:  Genau was letztes Mal passiert ist.
+
+
+U:  Kommentieren Sie die ganze Funktion int main(){...} in myfac_aufgabe1.cpp und versuchen Sie
+    noch einmal zu kompilieren. Testen Sie ./aufgabe
+
+A:  Der Program kompiliert.
+
+
+U:  Was können Sie machen, sodass die Funktion int factorial(int n) auch ausgeführt wird?
+    Weitere Hinweise zum Kompilieren und zum Compiler g++ finden sich z.B. unter
+
+A:  `int main()` in `quadraric-eqn_aufgabe1.cpp` auskommentieren und deren von `myfac_aufgabe1.cpp`
+     entkommentieren.
