@@ -6,5 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 add_subdirectory(blatt1)
 add_subdirectory(blatt2)
+add_subdirectory(blatt3 )
+
 
 add_executable(Blatt1 blatt1/blatt1.cpp)

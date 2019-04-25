@@ -1,0 +1,4 @@
+add_executable(aufgabe12 aufgabe12/aufgabe12.cpp)
+add_executable(aufgabe13 aufgabe13/aufgabe13.cpp)
+add_executable(aufgabe14 aufgabe14/aufgabe14.cpp)
+add_executable(aufgabe15 aufgabe15/aufgabe15.cpp)
