@@ -5,8 +5,18 @@
 
 #include <iostream>
 #include <algorithm>
-#include <cstring>
-#include <type_traits>
+
+size_t groesse(char* p)
+{
+    size_t counter{};
+    while (*p)
+    {
+        counter++;
+        p++;
+    }
+    return counter;
+}
+
 
 // Methode 1
 
@@ -24,18 +34,51 @@ char* find(char c, char* p)
 
 char* find2(char c, char* p)
 {
-    return std::find(p, p + strlen(p), c);
+    return std::find(p, p + groesse(p), c);
 }
 
-char* test = (char*)"Hallo";
+
+void swap(char* m, char* n)
+{
+    static char temp;
+    temp = *m;
+    *m = *n;
+    *n = temp;
+}
+
+void swap(char& m, char& n)
+{
+    static char temp;
+    temp = m;
+    m = n;
+    n = temp;
+}
+
 void reverse(char* p)
 {
-    unsigned counter{};
-    unsigned index{};
-    size_t length = strlen(p);
-    char temp;
-    *(test + 2) = '\0';
-    std::cout << test << std::endl;
+    size_t g = groesse(p) - 1;
+    for (int counter = 0, index = 0; counter < g; counter += 2, index++)
+    {
+        swap(p + index, p + g - index);
+    }
+}
+
+void reverse2(char* p)
+{
+    size_t g = groesse(p) - 1;
+    for (int counter = 0, index = 0; counter < g; counter += 2, index++)
+    {
+        swap(p[index], p[g - index]);
+    }
+}
+
+void insert(char* in, const char* ptr)
+{
+    while (*ptr)
+    {
+        *(in++) = *(ptr++);
+    }
+    *in = 0;
 }
 
 
@@ -43,8 +86,14 @@ int main()
 {
 
     std::cout << find('s', const_cast<char*>("beispiel")) << '\n'; // Ausgabe spiel
-    char* p = const_cast<char*>("hallo");
+    char* p = new char[100];
+    insert(p, "Hallo");
+    std::cout << "Original: " << p << std::endl;
+
     reverse(p);
-//    std::cout << p << std::endl;
+    std::cout << "Reverse: " << p << std::endl;
+
+    reverse2(p);
+    std::cout << "Reverse2: " << p << std::endl;
     return 0;
 }
