@@ -48,7 +48,7 @@ void* operator new[](size_t size, ...)
 int main()
 {
     // Statischer Speicherallokation
-    double koef[] = {1, 2, 1};
+    double koef[] = {2, 2, 1};
     double res2, res3;
     std::cout << "Res1: " << horner1(2, koef, 2) << std::endl;
     horner2(2, koef, 2, &res2);

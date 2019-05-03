@@ -1,3 +1,4 @@
+#add_executable(aufgabe1 aufgabe1/a)
 add_executable(aufgabe2 aufgabe2/aufgabe2.cpp)
 add_executable(aufgabe3 aufgabe3/aufgabe3.cpp)
 add_executable(aufgabe4 aufgabe4/aufgabe4.cpp)
