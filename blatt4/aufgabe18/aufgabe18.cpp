@@ -1,33 +1,34 @@
 #include <iostream>
 #include <cmath>
 
-
+template <typename T>
 struct elem
 {
-    int num;
+    T num;
     elem* next;
-    explicit elem(int n) : num {n}, next{} {}
+    explicit elem(T n) : num {n}, next{} {}
 };
 
 
+template <class T>
 class Liste
 {
 public:
-    elem* pEnd;
-    elem* pCurrent;
-    elem* pStart;
+    elem<T>* pEnd;
+    elem<T>* pCurrent;
+    elem<T>* pStart;
 
     Liste() : pEnd{}, pStart{}, pCurrent{} {}
-    void append(int n)
+    void append(T n)
     {
-        pCurrent = new elem(n);
+        pCurrent = new elem<T>(n);
         pCurrent->next = pEnd;
         pEnd = pCurrent;
         static bool start = [&](){ pStart = pCurrent; return true;}();
     }
     ~Liste()
     {
-        elem* ptr = pEnd;
+        elem<T>* ptr = pEnd;
         while (ptr != pStart)
         {
             static int counter{};
@@ -40,26 +41,27 @@ public:
 };
 
 
+template <class T>
 class Liste2
 {
 public:
-    elem* pStart;
-    elem* pEnd;
-    elem* pCurrent;
+    elem<T>* pStart;
+    elem<T>* pEnd;
+    elem<T>* pCurrent;
 
-    Liste2() { pStart = pEnd = new elem(0);}
+    Liste2() { pStart = pEnd = new elem<T>(0);}
     void append(int n)
     {
         pEnd->num = n;
-        pEnd->next = new elem(0);
+        pEnd->next = new elem<T>(0);
         pEnd = pEnd->next;
     }
 
     ~Liste2() {
-        elem* ptr = pStart;
+        elem<T>* ptr = pStart;
         while (ptr->next)
         {
-            elem* ptrlast = ptr;
+            elem<T>* ptrlast = ptr;
             ptr = ptr->next;
             delete ptrlast;
         }
@@ -71,7 +73,7 @@ public:
 
 int main(){
 
-    Liste meineListe;
+    Liste<int> meineListe;
 
     meineListe.append(10);
     meineListe.append(11);
@@ -80,7 +82,7 @@ int main(){
     meineListe.append(12321);
 
 
-    elem* ptr = meineListe.pEnd;
+    elem<int>* ptr = meineListe.pEnd;
     while (ptr != meineListe.pStart)
     {
         std::cout << ptr->num << '\n';
