@@ -1,0 +1,6 @@
+add_executable(aufgabe21 aufgabe21/aufgabe21.cpp)
+add_executable(aufgabe22 aufgabe22/aufgabe22.cpp)
+include_directories(aufgabe22 ../../matH/include/)
+add_executable(aufgabe24 aufgabe24/aufgabe24.cpp)
+add_executable(aufgabe23 aufgabe23/aufgabe23.cpp)
+add_executable(aufgabe25 aufgabe25/aufgabe25.cpp)
