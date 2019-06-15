@@ -15,3 +15,5 @@ add_subdirectory(blatt5)
 add_subdirectory(blatt6)
 add_subdirectory(blatt7)
 add_subdirectory(blatt8)
+
+add_subdirectory(projekt)
