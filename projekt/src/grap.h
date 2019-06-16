@@ -95,7 +95,7 @@ namespace GraphenTheorie
                 }
             }
         }
-        const std::pair<int, int>& getstats() { return g ; }
+        const std::pair<int, int>& getstats() { g.first = graphMap.size(); return g ; }
         bool nachbarExists(std::vector<Kante>& kanten, char node)
         {
             for (auto& kante : kanten)
@@ -136,6 +136,7 @@ namespace GraphenTheorie
         {
             graphMap[node].emplace_back(Kante(nachbar, gewicht));
             graphMap[nachbar].emplace_back(Kante(node, gewicht));
+            g.second++;
         }
         void addNode(char node, const std::vector<std::pair<char, double>>& nachbarn)
         {
@@ -156,9 +157,11 @@ namespace GraphenTheorie
             };
             eraseVertice(node, nachbar);
             eraseVertice(nachbar, node);
+            g.second--;
         }
         graphType::iterator begin() { return graphMap.begin(); }
         graphType::iterator end() { return graphMap.end(); }
+        std::vector<Kante>& operator[](char node) { return graphMap[node];}
         ~Graph() = default;
     };
 
@@ -184,7 +187,6 @@ namespace GraphenTheorie
                 if (r == result.end())
                     result.emplace_back(q);
             }
-
         };
         sortKante();
 
@@ -196,62 +198,8 @@ namespace GraphenTheorie
             if (ergebnis.hatKreis())
                 ergebnis.removeVertice(std::get<0>(kante), std::get<1>(kante));
         }
-
-
-
-//        while (true)
-//        {
-//            ergebnis.addNode(result[counter]);
-//            if (ergebnis.hatKreis()) {
-//                ergebnis.removeVertice(std::get<0>(result[counter]), std::get<1>(result[counter]));
-//            }
-//            counter++;
-//            if (counter > result.size())
-//                break;
-//        }
         return ergebnis;
     }
-
-
-//    inline auto maximalerSpannbaum(Graph& graph) -> Graph
-//    {
-//        Graph ergebnis{};
-//        std::tuple<char, char, double> maxKante{};
-//        std::vector<std::pair<char, char>> maxContainer;
-//        double max{};
-//        auto exists = [&](char ecke, char nachbar) -> bool
-//        {
-//            return std::find_if(maxContainer.begin(), maxContainer.end(), [&](const std::pair<char, char>& pair) {
-//                return (pair.first == ecke && pair.second == nachbar) || (pair.first == nachbar && pair.second == ecke);
-//            }) != maxContainer.end();
-//        };
-//        auto findNextExpensive = [&]()
-//        {
-//            double tempMax;
-//            for (auto& a : graph)
-//            {
-//                std::for_each(a.second.begin(), a.second.end(), [&](Graph::Kante& kante) {
-//                    if((tempMax  = kante.getData().second) >= max && !exists(a.first, kante.getData().first))
-//                    {
-//                        maxKante = {a.first, kante.getData().first, tempMax};
-//                        maxContainer.emplace_back(std::make_pair(a.first, kante.getData().first));
-//                        std::cout << "Max: " << a.first << " " << kante.getData().first <<" "<< tempMax << '\n';
-//                    }
-//                });
-//            }
-//        };
-//
-//        while(!ergebnis.hatKreis()){
-//            findNextExpensive();
-//            ergebnis.addNode(maxKante);
-//            std::cout << std::get<0>(maxKante) << " " << std::get<1>(maxKante) << " " << std::get<2>(maxKante) << '\n';
-//            if (maxContainer.size() >= graph.getstats().second)
-//            {
-//                break;
-//            }
-//        }
-//        return ergebnis;
-//    }
 }
 
 inline std::ostream& operator<<(std::ostream& o, GraphenTheorie::Graph& graph)
