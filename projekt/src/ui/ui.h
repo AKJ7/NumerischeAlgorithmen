@@ -30,7 +30,7 @@ namespace UI
     constexpr const int window_width = 800;
     constexpr const int window_height = 800;
     constexpr const char* graphWindowName = "Originaler Graph";
-    constexpr const char* maxGraphWindowName = "Mamimaler Aufspannender Baum";
+    constexpr const char* maxGraphWindowName = "Maximaler Aufspannender Baum";
     constexpr const int fontSize = 40;
     constexpr float R = static_cast<float>(window_width) * 0.5 - 50.0f;
 

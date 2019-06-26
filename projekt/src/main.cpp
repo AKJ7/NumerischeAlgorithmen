@@ -2,23 +2,27 @@
 // Created by hp on 6/9/19.
 //
 
+// Falls SFML installiert wurde, aendere SMFL_BIBLIOTHEK_INSTALLIERT zu 'true', sonst zu 'false'
+#define SFML_BIBLIOTHEK_INSTALLIERT false
 #include <iostream>
-#include <SFML/Graphics.hpp>
-
 #include "graph/grap.h"
-#include "ui/ui.h"
 
+#if SFML_BIBLIOTHEK_INSTALLIERT
+    #include <SFML/Graphics.hpp>
+    #include "ui/ui.h"
+#endif
 
 int main()
 {
     using namespace GraphenTheorie;
-    using namespace UI;
-
     Graph<> graph;
-    graph.randomize(5, 7);
-    std::cout << graph <<'\n';
+    graph.randomize(5, 6);
+    std::cout << "Originaler Graph:\n" << graph <<'\n';
     auto maxGraph = maximalerSpannbaum(graph);
-    std::cout << '\n' << maxGraph << '\n';
+    std::cout << '\n' << "Maximaler Spannbaum:\n" << maxGraph << '\n';
+
+#if SFML_BIBLIOTHEK_INSTALLIERT
+    using namespace UI;
     GraphEngine graphEngine(&graph);
     GraphEngine maxGraphEngine(&maxGraph);
     sf::RenderWindow window(sf::VideoMode(window_width, window_height), graphWindowName);
@@ -59,5 +63,6 @@ int main()
         window.display();
         loesung.display();
     }
+#endif
     return EXIT_SUCCESS;
 }

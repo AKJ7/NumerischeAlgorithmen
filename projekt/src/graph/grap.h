@@ -5,16 +5,17 @@
 #ifndef NUMERISCHE_ALGORITHMEN_GRAP_H
 #define NUMERISCHE_ALGORITHMEN_GRAP_H
 
-#include <unordered_map>
-#include <string>
-#include <vector>
+#include <unordered_map>        // std::unordered_map
+#include <string>               // std::string
+#include <vector>               // std::vector
 #include <iterator>
-#include <tuple>
-#include <cassert>
-#include <random>
-#include <algorithm>
-#include <utility>
-#include <type_traits>
+#include <tuple>                // std::tuple
+#include <cassert>              // assert
+#include <random>               // std::random_device, std::mt19937, std::uniform_real_distribution, std::uniform_int_distribution
+#include <algorithm>            // std::find, std::find_if, std::for_each, std::sort
+#include <utility>              // std::pair
+#include <type_traits>          // std::is_pod
+#include <iostream>             // std::cout
 
 
 namespace GraphenTheorie
@@ -78,10 +79,10 @@ namespace GraphenTheorie
             }
             if (!isZusammenhaengend())
             {
+                //TODO: Moegliche Implementierung: Verbindung der nicht zusammenhaengenden Ecken, falls der Graph nicht zusammenhaengend ist!
                 std::cout << *this << '\n';
                 throw std::logic_error("Graph nicht zusammenhaengend. Abbruch!");
             }
-            std::cout << std::boolalpha << "Kreis: " << hatKreis() << '\n';
         }
         void addNode(char c)
         {
@@ -210,7 +211,7 @@ namespace GraphenTheorie
             return false;
         }
         std::vector<Kante<T>>& operator[](char c) { return graphMap[c]; }
-        inline typename std::unordered_map<char, std::vector<Kante<T>>>::iterator begin() { return graphMap.begin(); }
+        inline typename std::unordered_map<char, std::vector<Kante<T>>>::iterator  begin() { return graphMap.begin(); }
         inline typename std::unordered_map<char, std::vector<Kante<T>>>::iterator end() { return graphMap.end(); }
     };
 }
